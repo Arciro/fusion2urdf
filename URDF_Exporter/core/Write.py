@@ -222,6 +222,10 @@ def write_gazebo_xacro(joints_dict, links_xyz_dict, inertial_dict, package_name,
         gazebo = Element('gazebo')
         plugin = SubElement(gazebo, 'plugin')
         plugin.attrib = {'name':'control', 'filename':'libgazebo_ros_control.so'}
+        robot_ns = SubElement(plugin, 'robotNamespace')
+        robot_ns.text = '/'+robot_name+'_controller'
+        robot_sym = SubElement(plugin, 'robotSimType')
+        robot_sym.text = 'gazebo_ros_control/DefaultRobotHWSim'
         gazebo_xml = "\n".join(utils.prettify(gazebo).split("\n")[1:])
         f.write(gazebo_xml)
 
@@ -378,7 +382,7 @@ def write_control_launch(package_name, robot_name, save_dir, joints_dict):
 
     node_controller = Element('node')
     node_controller.attrib = {'name':'controller_spawner', 'pkg':'controller_manager', 'type':'spawner',\
-                    'respawn':'false', 'output':'screen', 'ns':robot_name,\
+                    'respawn':'false', 'output':'screen', 'ns':robot_name + '_controller',\
                     'args':'{}'.format(controller_args_str)}
     
     node_publisher = Element('node')
