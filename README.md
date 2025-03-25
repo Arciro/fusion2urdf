@@ -87,6 +87,8 @@ Before using this script, make sure that your model has all the "links" as compo
 
 In addition to that, you should be careful when define your joints. The **parent links** should be set as **Component2** when you define the joint, not as Component1. For example, if you define the "base_link" as Component1 when you define the joints, an error saying "KeyError: base_link__1" will show up.
 
+Also, it's better if you use the command **Joint** and not **As build joint** of Fusion360, because in this way all the proper lines will be written in the file `controller.yaml`, otherwise you will in that file just the `joint_state_controller`
+
 <img src="https://github.com/syuntoku14/fusion2urdf/blob/images/spot_mini.PNG" alt="spot_mini" title="spot_mini" width="300" height="300">
 
 Also, make sure components of your model has only bodies. **Nested components are not supported**.
@@ -102,6 +104,8 @@ Sometimes this script exports abnormal urdf without any error messages. In that 
 
 In addition to that, make sure that this script currently supports only "Rigid", "Slider" and "Revolute".
 
+Eventually, Finally, be careful when designing your robot to ensure it is not too small, as this would result in low inertia values in the URDF file. When loading controllers with "high" PID gains, such as the default ones that are generated, launching the controller.launch file could cause the Gazebo simulator to crash.
+If you do need a small robot, make sure to reduce the PID gain values in `controller.yaml` and then relaunch the `controller.launch` file.
 
 ## Complex Kinematic Loops and Spherical joints (may be fixed later):
 
