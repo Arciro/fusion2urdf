@@ -293,6 +293,7 @@ def write_display_launch(package_name, robot_name, save_dir):
 
     file_name = save_dir + '/launch/display.launch'    
     with open(file_name, mode='w') as f:
+        f.write('<?xml version="1.0" ?>\n')
         f.write(launch_xml)
 
 def write_gazebo_launch(package_name, robot_name, save_dir):
@@ -339,6 +340,7 @@ def write_gazebo_launch(package_name, robot_name, save_dir):
     
     file_name = save_dir + '/launch/' + 'gazebo.launch'    
     with open(file_name, mode='w') as f:
+        f.write('<?xml version="1.0" ?>\n')
         f.write(launch_xml)
 
 
@@ -392,6 +394,7 @@ def write_control_launch(package_name, robot_name, save_dir, joints_dict):
 
     file_name = save_dir + '/launch/controller.launch'    
     with open(file_name, mode='w') as f:
+        f.write('<?xml version="1.0" ?>\n')
         f.write('<launch>\n')
         f.write('\n')
         #for some reason ROS is very picky about the attribute ordering, so we'll bitbang this element
