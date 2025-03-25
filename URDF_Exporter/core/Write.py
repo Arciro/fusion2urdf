@@ -395,7 +395,7 @@ def write_control_launch(package_name, robot_name, save_dir, joints_dict):
         f.write('<launch>\n')
         f.write('\n')
         #for some reason ROS is very picky about the attribute ordering, so we'll bitbang this element
-        f.write('<rosparam file="$(find {})/launch/controller.yaml" command="load"/>'.format(package_name))
+        f.write('<rosparam file="$(find {})/config/controller.yaml" command="load"/>'.format(package_name))
         f.write('\n')
         f.write(launch_xml)
         f.write('\n')
@@ -404,7 +404,7 @@ def write_control_launch(package_name, robot_name, save_dir, joints_dict):
 
 def write_yaml(package_name, robot_name, save_dir, joints_dict):
     """
-    write yaml file "save_dir/launch/controller.yaml"
+    write yaml file "save_dir/config/controller.yaml"
     
     
     Parameter
@@ -416,11 +416,11 @@ def write_yaml(package_name, robot_name, save_dir, joints_dict):
     joints_dict: dict
         information of the joints
     """
-    try: os.mkdir(save_dir + '/launch')
+    try: os.mkdir(save_dir + '/config')
     except: pass 
 
     controller_name = robot_name + '_controller'
-    file_name = save_dir + '/launch/controller.yaml'
+    file_name = save_dir + '/config/controller.yaml'
     with open(file_name, 'w') as f:
         f.write(controller_name + ':\n')
         # joint_state_controller
