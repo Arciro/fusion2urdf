@@ -87,7 +87,7 @@ Before using this script, make sure that your model has all the "links" as compo
 
 In addition to that, you should be careful when define your joints. The **parent links** should be set as **Component2** when you define the joint, not as Component1. For example, if you define the "base_link" as Component1 when you define the joints, an error saying "KeyError: base_link__1" will show up.
 
-Also, it's better if you use the command **Joint** and not **As build joint** of Fusion360, because in this way all the proper lines will be written in the file `controller.yaml`, otherwise you will in that file just the `joint_state_controller`
+Also, it's better if you use the command **Joint** and not **As build joint** of Fusion360, because in this way all the proper lines will be written in the file `controller.yaml`, otherwise you will see in that file just the `joint_state_controller`
 
 <img src="https://github.com/syuntoku14/fusion2urdf/blob/images/spot_mini.PNG" alt="spot_mini" title="spot_mini" width="300" height="300">
 
